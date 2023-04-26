@@ -28,17 +28,20 @@ def main():
         # how can we create AES-CBC cipher in Python?
         # how can we initialize that with key and the iv?
         # Store that cipher object to the variable cipher
-        cipher = 0
+        cipher = AES.new(key, AES.MODE_CBC, iv)
         # how can we decrypt encrypted_data with the AES cipher object?
         # using cipher to decrypt encrypted_data, and store the result
         # in the decrypted variable
-        decrypted = 0
+        decrypted = cipher.decrypt(encrypted_data)
 
         # correctly decrypted flag starts with 'cs370{'
         # can you check if the decrypted result is correct or not?
         # how?
         # TODO: code here!
-        pass
+	if decrypted.startswith(b'cs370{'):
+		print("Password: {}".format(password))
+		print("Decrypted flag: {}".format(decrypted))
+		break
 
 if __name__ == '__main__':
     main()
